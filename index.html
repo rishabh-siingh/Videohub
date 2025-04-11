@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hub PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fixed-video-player" id="fixedPlayer">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <iframe class="fixed-iframe" id="mainPlayer" 
+                allow="autoplay; encrypted-media" 
+                sandbox="allow-scripts allow-same-origin">
+        </iframe>
+    </div>
+
+    <main class="content">
+        <div class="video-feed" id="homeFeed"></div>
+        <div class="shorts-feed" id="shortsFeed"></div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-btn active" id="homeBtn">Home</button>
+        <button class="nav-btn" id="shortsBtn">Shorts</button>
+        <div class="menu-container">
+            <button class="menu-btn">☰</button>
+            <div class="menu-dropdown">
+                <input type="file" id="homeImportInput" hidden accept=".txt">
+                <input type="file" id="shortsImportInput" hidden accept=".txt">
+                <button class="menu-item" id="importHomeBtn">Import Main Videos</button>
+                <button class="menu-item" id="importShortsBtn">Import Shorts</button>
+                <button class="menu-item" id="clearVideosBtn">Clear All Videos</button>
+            </div>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

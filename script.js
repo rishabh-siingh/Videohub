@@ -334,3 +334,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initApp();
 });
+
+function convertToPreviewUrl(url) {
+    try {
+        const urlObj = new URL(url);
+        const hostname = urlObj.hostname;
+
+        if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) {
+            const videoId = urlObj.searchParams.get('v') || urlObj.pathname.split('/').pop().replace(/[?#].*$/, '');
+            return `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0`;
+        }
+
+        if (hostname.includes('drive.google.com')) {
+            return url.replace('/view', '/preview').split('&')[0];
+        }
+
+        if (url.endsWith('.mp4')) {
+            return { type: 'native', src: url };
+        }
+
+        if (hostname.includes('xhamster')) {
+            return { type: 'proxy', src: `https://videohub-mu-smoky.vercel.app/embed?url=${encodeURIComponent(url)}` };
+        }
+
+        return url;
+    } catch {
+        return url;
+    }
+}
